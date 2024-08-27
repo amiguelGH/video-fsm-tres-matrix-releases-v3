@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/video-fsm-tres-matrix-actions-reusables/static/css/main.8b09a2c3.css",
+    "main.js": "/video-fsm-tres-matrix-actions-reusables/static/js/main.3f5e3a90.js",
+    "index.html": "/video-fsm-tres-matrix-actions-reusables/index.html",
+    "main.8b09a2c3.css.map": "/video-fsm-tres-matrix-actions-reusables/static/css/main.8b09a2c3.css.map",
+    "main.3f5e3a90.js.map": "/video-fsm-tres-matrix-actions-reusables/static/js/main.3f5e3a90.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8b09a2c3.css",
+    "static/js/main.3f5e3a90.js"
+  ]
+}

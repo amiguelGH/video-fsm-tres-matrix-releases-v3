@@ -1,0 +1,29 @@
+Ok.. https://www.youtube.com/watch?v=GISE4ttItCU 
+Ok.. https://github.com/resources/articles/devops/ci-cd-deployment
+Ok.. https://medium.com/@Insighture/release-strategies-using-git-branching-025b2edcc67a
+Ok.. https://docs.bump.sh/help/publish-documentation/deploy-and-release-management/
+Ok.. https://cloud.theodo.com/en/blog/release-please
+Ok.. https://www.youtube.com/watch?v=_ueJ3LrRqPU
+Ok.. https://rangle.io/blog/release-process-github-actions
+Ok.. https://www.hatica.io/blog/tips-to-automate-github-release-creation/
+Ok.. https://zeet.co/blog/release-management
+Ok.. https://www.runway.team/blog/ci-cd-pipeline-android-app-fastlane-github-actions
+Ok.. https://medium.com/@iamarasekera/streamlining-your-development-workflow-managing-releases-versions-and-tags-be7018e68726
+[54] https://birtony.medium.com/setting-up-automated-release-workflow-with-github-actions-628dbca2446e, Anton Biriukov, Setting up Automated Release Workflow with GitHub Actions, Feb 2, 2021
+[55] https://medium.com/@viniciusteixeiradias/semantic-release-github-actions-61762c6a86c4 , Vinicius Dias, Semantic Release + Github Actions, Feb 27, 2024
+[56] https://dev.to/sahanonp/how-to-setup-semantic-release-with-github-actions-31f3 , Sahanon Phisetpakasit, How to setup Semantic Release with GitHub Actions, 26 may, 2024
+[57] https://blog.emumba.com/release-management-and-controlled-release-deployment-using-github-actions-kustomize-and-argocd-e3a88f3e5d1d , Faraz Ahmed, Release Management and Controlled Release Deployment Using GitHub Actions, Kustomize, and ArgoCD, Sep 1, 2023
+
+
+
+
+Bibliotecas de JavaScript para flujos de trabajo de liberación automático
+
+Nx
+release-please : la herramienta release-please.
+release-please-action : ejecuta release please como una acción de GitHub.
+semantic-release : automatiza lanzamientos, según las convenciones de Angular, cuando se envían cambios a una rama.
+release-it
+
+
+

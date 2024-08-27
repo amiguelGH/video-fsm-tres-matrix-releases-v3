@@ -1,0 +1,28 @@
+name: Matrix Semantic Release
+
+on:
+  push:
+    branches:
+      - main
+      - dev/*
+      - feature/*
+      - hotfix/*
+jobs:
+  version-matrix:
+    strategy:
+      # super important if you want to see all results, even if one fails
+      # fail-fast is true by default
+      fail-fast: false
+      matrix:
+        version: [10, 12, 14, 16, 20]
+        sistema-operativo: [github-pages]
+      max-parallel: 1
+    uses: amiguelGH/video-fsm-tres-matrix-releases-v2/.github/workflows/semantic-release.yaml@main
+    with:
+        tag:  v0.0.1
+        pre-release: prueba
+        create-branch: QA
+    secrets: inherit
+
+
+    

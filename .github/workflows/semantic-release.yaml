@@ -1,0 +1,85 @@
+name: Create Release
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Etiqueta con la que crear la versión'
+        type: string
+        required: true 
+      pre-release:
+        type: boolean
+        description: Crear una versión previa
+      create-branch:
+        type: boolean
+        description: Crear rama de versión con etiqueta
+jobs:
+  CreateRelease:
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+
+      # Configurar el inicio de sesión de GHCR y Kustomize
+      - name: Iniciar sesión en GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+          
+      # Verificar la rama actual
+      - uses: actions/checkout@v3
+
+      - name: Verificar si la etiqueta ya se creó
+        uses: mukunku/tag-exists-action@v1.1.0
+        id: checkTag
+        with: 
+          tag: ${{ inputs.tag }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name:  Cancelar lanzamiento
+        if: steps.checkTag.outputs.exists == 'true'
+        run: |
+          echo ${{ steps.checkTag.outputs.exists }}
+          echo La versión de la etiqueta de lanzamiento ${{ inputs.tag }} ya existe. Se cancela el lanzamiento..."
+
+      - name: Crear rama de lanzamiento si create-branch es verdadero
+        if: (github.event.inputs.create-branch == 'true' && steps.checkTag.outputs.exists == 'false')
+        uses: peterjgrainger/action-create-branch@v2.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: release-${{ inputs.tag }}
+
+      # Obtener SHA de confirmación actual
+      - name: Obtener SHA de confirmación actual 
+        if: steps.checkTag.outputs.exists == 'false'
+        shell: bash
+        run: echo "##[set-output name=commit_sha;]$(git rev-parse HEAD)"
+        id: extract_commit
+      
+      - name: Salida SHA de confirmación actual
+        if: steps.checkTag.outputs.exists == 'false'
+        run: |
+          echo Current commit SHA: ${{ steps.extract_commit.outputs.commit_sha }}
+
+      - name: Changelog
+        if: steps.checkTag.outputs.exists == 'false'
+        uses: Bullrich/generate-release-changelog@master
+        id: Changelog
+        env:
+          REPO: ${{ github.repository }}
+
+      - name: Create Release
+        if: steps.checkTag.outputs.exists == 'false'
+        id: create_release          
+        uses: actions/create-release@v1
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ inputs.tag }}
+          release_name: Release ${{ inputs.tag }}
+          body: ${{ steps.Changelog.outputs.changelog }}
+          draft: false
+          prerelease: ${{ inputs.pre-release }}
