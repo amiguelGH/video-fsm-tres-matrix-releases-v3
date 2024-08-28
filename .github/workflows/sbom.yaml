@@ -4,7 +4,7 @@ env:
   # Anything uncommented below will also need to be uncommented in the "with" section of the "Generate SBOM" step
   # Choose an SBOM generator from the list below (uncomment one and only one):
   #sbomGenerator: syft
-  #sbomGenerator: trivy
+  sbomGenerator: trivy
   #sbomGenerator: cdxgen
   #sbomGenerator: sigstore-bom
   #sbomGenerator: spdx-sbom-generator
@@ -12,7 +12,7 @@ env:
   #
   # Choose an SBOM output format from the list below (uncomment one and only one):
   ## NOTE: spdx-json cannot be used with cdxgen or docker-sbom
-  #sbomOutput: spdx-json
+  sbomOutput: spdx-json
   ## NOTE: cyclonedx-json cannot be used with sigstore-bom, spdx-sbom-generator, or docker-sbom
   #sbomOutput: cyclonedx-json
   #
